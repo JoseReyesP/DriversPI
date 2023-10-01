@@ -21,6 +21,7 @@ const findAllTeams = async () => {
         const newTeam = await Teams.create({
           nombre: teamName,
         });
+        newTeam.save();
       } catch (error) {
         console.error(`Error al crear el equipo ${teamName}: ${error.message}`);
       }

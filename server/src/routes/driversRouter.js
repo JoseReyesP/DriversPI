@@ -62,7 +62,7 @@ driversRouter.get("/:idDriver", async (req, res) => {
 driversRouter.post("/", async (req, res) => {
   try {
     const data = req.body;
-    if (!data.Nombre || !data.Apellido) {
+    if (!data.conductor.Nombre || !data.conductor.Apellido || !data.teams) {
       return res.status(400).json("data invalid");
     }
     const newDriver = await createNewDriver(data);

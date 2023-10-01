@@ -14,3 +14,10 @@ CREATE TABLE teams (
     ID SERIAL PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL
 );
+
+/* obtener el equipo de un driver en la base de datos */
+SELECT "Teams".*
+FROM "Teams"
+INNER JOIN "DriverTeams" ON "Teams"."ID" = "DriverTeams"."TeamID"
+INNER JOIN "Drivers" ON "DriverTeams"."DriverID" = "Drivers"."ID"
+WHERE "Drivers"."Nombre" = 'Luis';
