@@ -1,0 +1,9 @@
+.contenedor {
+  display: flex;
+  justify-content: center; /* Para alinear al centro horizontalmente */
+}
+
+.contenedor button {
+  padding: auto;
+  margin: 15px;
+}
