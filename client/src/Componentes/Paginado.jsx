@@ -10,7 +10,7 @@ const Paginado = (props) => {
       </div>
       <div>
         <p>
-          {props.pagina + 1}/{props.paginas}
+          {props.pagina}/{props.paginas - 1}
         </p>
       </div>
 

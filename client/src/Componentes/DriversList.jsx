@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import DriverCard from "./DriverCard";
+import DriverCardDB from "./DriverCardDB";
 import "./DriverList.css";
 import { useDispatch, useSelector } from "react-redux";
 import Paginado from "./Paginado";
@@ -10,6 +11,7 @@ const DriversList = () => {
   const pagina = useSelector((state) => state.drivers.pagina);
   const drivers = useSelector((state) => state.drivers);
   const dispatch = useDispatch();
+  const driversDB = [];
 
   if (drivers.drivers.length === 0) {
     console.log("cargando...");
@@ -31,7 +33,7 @@ const DriversList = () => {
   console.log(paginas, " === ", pagina);
 
   const onClickNextPage = () => {
-    if (pagina != arraysDivididos.length - 1) {
+    if (pagina <= arraysDivididos.length - 2) {
       console.log(pagina, "++++", paginas);
       dispatch(setPagina(pagina + 1));
     }
@@ -50,15 +52,30 @@ const DriversList = () => {
   return (
     <div>
       <div className="wrapper">
-        {arraysDivididos[pagina].map((driver) => (
-          <DriverCard
-            key={driver.id}
-            id={driver.id}
-            name={driver.name}
-            image={driver.image.url}
-            teams={driver.teams}
-          />
-        ))}
+        {arraysDivididos[pagina].map((driver) => {
+          if (driver.Nombre) {
+            return (
+              <DriverCardDB
+                key={driver.ID}
+                id={driver.ID}
+                Nombre={driver.Nombre}
+                Apellido={driver.Apellido}
+                Imagen={driver.Imagen}
+                Teams={driver.Teams}
+              />
+            );
+          } else {
+            return (
+              <DriverCard
+                key={driver.id}
+                id={driver.id}
+                name={driver.name}
+                image={driver.image.url}
+                teams={driver.teams}
+              />
+            );
+          }
+        })}
       </div>
       <Paginado
         onClickNextPage={onClickNextPage}

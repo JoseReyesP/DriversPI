@@ -1,7 +1,7 @@
 import { SET_DRIVERS, FILTER_BY_NAME, SET_PAGINA } from "../actions/drivers";
 
 const driversReducer = (
-  state = { drivers: [], driversBuffer: [], pagina: 0 },
+  state = { drivers: [], driversBuffer: [], pagina: 56 },
   action
 ) => {
   switch (action.type) {
