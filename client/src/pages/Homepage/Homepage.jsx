@@ -48,6 +48,7 @@ const Homepage = () => {
     setForzarRenderizacion(!forzarRenderizacion);
   };
 
+  dispatch(displayDriversData());
   return (
     <div>
       <div className="appWrapper">

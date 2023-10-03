@@ -25,13 +25,9 @@ const driversReducer = (
       return {
         ...state,
         pagina: 0,
-        drivers: state.drivers.filter((driver) => {
-          if (driver.Nombre) {
-            return driver.Nombre.match(new RegExp(action.payload, "i"));
-          } else {
-            return driver.name.forename.match(new RegExp(action.payload, "i"));
-          }
-        }),
+        drivers: state.drivers.filter((d) =>
+          d.Nombre.match(new RegExp(action.payload, "i"))
+        ),
       };
     case FILTER_BY_ORIGIN:
       state.drivers = Array.from(state.driversBuffer);
