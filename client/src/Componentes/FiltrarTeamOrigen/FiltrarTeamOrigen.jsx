@@ -1,8 +1,8 @@
 import React from "react";
 import "./FiltrarTeamOrigen.css";
 import { useState } from "react";
-import FiltroOrigen from "./FiltroOrigen";
-import FiltroTeams from "./FiltroTeams";
+import FiltroOrigen from "../FiltroOrigen/FiltroOrigen";
+import FiltroTeams from "../FiltroTeams/FiltroTeams";
 
 //Botones/Opciones para filtrar por team,
 //y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).

@@ -1,7 +1,7 @@
 import React from "react";
 import "./OrdenarNombreFecha.css";
 import { useDispatch } from "react-redux";
-import { sortNameAsc, sortNameDesc } from "../actions/drivers";
+import { sortNameAsc, sortNameDesc } from "../../actions/drivers";
 
 const OrdenarNombreFecha = () => {
   const dispatch = useDispatch();

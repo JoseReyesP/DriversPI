@@ -1,8 +1,8 @@
 import React from "react";
 import "./SearchBar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setInput, resetInput } from "../actions/searchbar";
-import { setDrivers, setFilter } from "../actions/drivers";
+import { setInput, resetInput } from "../../actions/searchbar";
+import { setDrivers, setFilter } from "../../actions/drivers";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

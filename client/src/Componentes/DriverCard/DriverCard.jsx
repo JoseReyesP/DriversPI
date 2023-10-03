@@ -12,16 +12,23 @@ const DriverCard = (props) => {
   return (
     <>
       <div className="card" key={props.id} onClick={onClickHandlerCard}>
-        <img src={props.image} />
+        <img src={props.imagen} />
         <div>
           <h3>
-            <b>{props.name.forename} </b>
-            <b>{props.name.surname}</b>
+            <b>{props.nombre} </b>
+            <b>{props.apellido}</b>
           </h3>
           <div>
             <b>Escuderias:</b>
             <br />
-            <div>{props.teams}</div>
+            <div>
+              {props.teams.map((t) => (
+                <div>
+                  <a>{t}</a>
+                  <br />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <small>id:{props.id}</small>

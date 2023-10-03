@@ -33,5 +33,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    Nacionalidad: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    Url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    Origen: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 };

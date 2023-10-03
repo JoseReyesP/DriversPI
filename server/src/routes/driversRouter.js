@@ -14,11 +14,55 @@ const findAllTeams = require("../controllers/findAllTeams");
 
 // Rutas ******
 
+// Funcion de formateo de datos, esto igualara el formato de la api con el formato de la base de datos
+// de esta manera no habra distincion entre uno u otro excepto por un campo que especifica su origen {origen: db/api}
+const dataFormatter = (rawData) => {
+  let formattedData = [];
+  let bufferObject = {};
+  rawData.map((e) => {
+    if (!e.Nombre) {
+      const teamsArray = e.teams ? e.teams.split(", ") : [];
+      bufferObject = {
+        ID: e.id,
+        Nombre: e.name.forename,
+        Apellido: e.name.surname,
+        Descripcion: e.description,
+        Imagen: e.image.url,
+        Rating: "desconocido",
+        Fecha_nacimiento: e.dob,
+        Nacionalidad: e.nationality,
+        Url: e.url,
+        Teams: teamsArray,
+        Origen: "API",
+      };
+      formattedData.push(bufferObject);
+    } else {
+      let teams = e.Teams.map((t) => t.nombre);
+      bufferObject = {
+        ID: e.ID,
+        Nombre: e.Nombre,
+        Apellido: e.Apellido,
+        Descripcion: e.descripcion,
+        Imagen: e.Imagen,
+        Rating: e.Rating,
+        Fecha_nacimiento: e.Fecha_nacimiento,
+        Nacionalidad: e.Nacionalidad,
+        Url: e.Url,
+        Teams: teams,
+        Origen: e.Origen,
+      };
+      formattedData.push(bufferObject);
+    }
+  });
+  return formattedData;
+};
+
 // Ruta default
 driversRouter.get("/", async (req, res) => {
   try {
     const apiResponse = await findAllDrivers();
-    res.status(200).json(apiResponse.data);
+    let formatted = dataFormatter(apiResponse.data); // formateamos los datos recibidos para que sean mas faciles de leer por el cliente
+    res.status(200).json(formatted);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

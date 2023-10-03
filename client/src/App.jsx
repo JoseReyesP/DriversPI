@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Pages
 import Root from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/Homepage/Homepage";
 import LandingPage from "./pages/LandingPage";
 import DriverDetails from "./pages/DriverDetails";
 import AddNewDriver from "./pages/AddNewDriver";

@@ -14,6 +14,7 @@ const driversReducer = (
 ) => {
   switch (action.type) {
     case SET_DRIVERS:
+      //console.log("Reducer: ", action.payload);
       return {
         ...state,
         drivers: action.payload,

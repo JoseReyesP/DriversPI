@@ -33,5 +33,5 @@ export const setPagina = (page) => ({ type: SET_PAGINA, payload: page });
 
 export const displayDriversData = () => (dispatch, getState) => {
   const driversData = getState().drivers;
-  console.log("Drivers Data:", driversData.drivers[0].id);
+  console.log("Drivers Data:", driversData.drivers);
 };

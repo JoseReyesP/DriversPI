@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterTeam } from "../actions/drivers";
+import { setFilterTeam } from "../../actions/drivers";
 import axios from "axios";
 
 const FiltroTeams = () => {
