@@ -1,0 +1,16 @@
+.Ordenar {
+  display: flex;
+  justify-content: center; /* Para alinear al centro horizontalmente */
+  align-items: center;
+  margin: 5px;
+}
+select {
+  height: 2rem;
+  margin-left: 5px;
+}
+.contenedorOrdenar {
+  display: flex;
+  justify-content: left; /* Para alinear al centro horizontalmente */
+  align-items: center;
+  margin: 5px;
+}

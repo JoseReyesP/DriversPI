@@ -3,7 +3,13 @@ import React from "react";
 const AddNewDriver = () => {
   return (
     <div>
-      <h1>ADD NEW DRIVER. WORKING ON IT</h1>
+      <form>
+        <label>Nombre</label>
+        <label>Apellido</label>
+        <label>Descripcion</label>
+        <label>Fecha de nacimiento</label>
+        <label>equipos</label>
+      </form>
     </div>
   );
 };

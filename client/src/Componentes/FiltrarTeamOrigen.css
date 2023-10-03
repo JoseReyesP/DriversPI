@@ -1,0 +1,16 @@
+.filtro {
+  display: flex;
+  justify-content: center; /* Para alinear al centro horizontalmente */
+  align-items: center;
+  margin: 5px;
+}
+select {
+  height: 2rem;
+  margin-left: 5px;
+}
+.contenedorFiltro {
+  display: flex;
+  justify-content: left; /* Para alinear al centro horizontalmente */
+  align-items: center;
+  margin: 5px;
+}
