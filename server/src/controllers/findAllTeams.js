@@ -18,7 +18,7 @@ const findAllTeams = async () => {
   const teamsDB = await Teams.count();
 
   if (teamsDB > 0) {
-    return "full";
+    return ["full", tList];
   } else {
     //poblamos la tabla teams
     Promise.all(

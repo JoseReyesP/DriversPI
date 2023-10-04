@@ -33,3 +33,15 @@ input:focus,
 input:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.scroll-container {
+  width: 300px; /* Ancho del contenedor */
+  height: 200px; /* Altura del contenedor */
+  overflow-y: scroll; /* Agregar scrollbar vertical */
+  border: 1px solid #ccc; /* Borde para el contenedor */
+}
+
+/* Estilo para los checkboxes */
+.checkbox {
+  display: block; /* Hacer que los checkboxes ocupen una línea completa */
+  margin: 10px 0; /* Margen superior e inferior entre los checkboxes */
+}

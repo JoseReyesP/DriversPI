@@ -1,23 +1,25 @@
 import React from "react";
 import "./AddNewDriver.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddNewDriver = () => {
   const navigate = useNavigate();
+  const [tList, setTlist] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         let response = await axios.get("http://localhost:3001/drivers/teams");
-        console.log(response.data);
+        setTlist(response.data[1]);
       } catch (error) {
         console.log("Error al obtener datos", error.message);
       }
     };
     fetchData();
   }, []);
-
+  console.log(tList);
   const onSubmitHandler = (event) => {
     event.preventDefault();
     let imagen =
@@ -124,6 +126,14 @@ const AddNewDriver = () => {
         <div>
           <label>equipos:</label>
           <textarea name="teams" />
+        </div>
+        <div className="scroll-container">
+          {tList.map((t) => (
+            <label className="checkbox">
+              <inpu type="checkbox" name={t} />
+              {t}
+            </label>
+          ))}
         </div>
         <div>
           <label>Pagina web personal:</label>
