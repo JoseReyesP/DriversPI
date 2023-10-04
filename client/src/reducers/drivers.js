@@ -121,6 +121,7 @@ const driversReducer = (
       };
 
     case RESET_FILTER:
+      console.log("reset filter:", state.driversBuffer);
       return { ...state, drivers: state.driversBuffer };
 
     case SET_PAGINA:

@@ -6,7 +6,7 @@ const DriverCard = (props) => {
   const navigate = useNavigate();
 
   const onClickHandlerCard = () => {
-    navigate(`/details/${props.id}`);
+    navigate(`/details/${props.id + "-" + props.origen}`);
   };
 
   const backgroundColor =

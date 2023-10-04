@@ -27,7 +27,11 @@ const AddNewDriver = () => {
       'textarea[name="descripcion"]'
     ).value;
     let rating = event.target.querySelector('input[name="rating"]').value;
-    let dob = event.target.querySelector('input[name="dob"]').value;
+    let dateArray = event.target
+      .querySelector('input[name="dob"]')
+      .value.split("-");
+    console.log(dateArray);
+    dob = dateArray[0] + "-" + dateArray[1] + "-" + dateArray[2];
     let nacionalidad = event.target.querySelector(
       'input[name="nacionalidad"]'
     ).value;

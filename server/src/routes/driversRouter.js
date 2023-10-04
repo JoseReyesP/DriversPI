@@ -36,7 +36,7 @@ const dataFormatter = (rawData) => {
         Origen: "API",
       };
       formattedData.push(bufferObject);
-    } else {
+    } else if (e.Nombre) {
       let teams = e.Teams.map((t) => t.nombre);
       bufferObject = {
         ID: e.ID,
@@ -56,7 +56,46 @@ const dataFormatter = (rawData) => {
   });
   return formattedData;
 };
+const formatByID = (rawData) => {
+  let formattedData = [];
+  let data = {};
+  if (rawData.length > 1) {
+    const teamsArray = rawData[0].teams ? rawData[0].teams.split(", ") : [];
+    data = {
+      ID: rawData[0].id,
+      Nombre: rawData[0].name.forename,
+      Apellido: rawData[0].name.surname,
+      Descripcion: rawData[0].description,
+      Imagen: rawData[0].image.url,
+      Rating: "desconocido",
+      Fecha_nacimiento: rawData[0].dob,
+      Nacionalidad: rawData[0].nationality,
+      Url: rawData[0].url,
+      Teams: teamsArray,
+      Origen: "API",
+    };
+    formattedData.push(data);
+    formattedData.push(rawData[1]);
+  } else {
+    const teamsArray = rawData.teams ? rawData.teams.split(", ") : [];
+    data = {
+      ID: rawData.id,
+      Nombre: rawData.name.forename,
+      Apellido: rawData.name.surname,
+      Descripcion: rawData.description,
+      Imagen: rawData.image.url,
+      Rating: "desconocido",
+      Fecha_nacimiento: rawData.dob,
+      Nacionalidad: rawData.nationality,
+      Url: rawData.url,
+      Teams: teamsArray,
+      Origen: "API",
+    };
+    formattedData.push(data);
+  }
 
+  return formattedData;
+};
 // Ruta default
 driversRouter.get("/", async (req, res) => {
   try {
@@ -95,7 +134,9 @@ driversRouter.get("/:idDriver", async (req, res) => {
   try {
     const { idDriver } = req.params;
     const apiResponse = await findDriverById(idDriver);
-    res.status(200).json(apiResponse.data);
+    console.log(apiResponse.data);
+    let formatted = formatByID(apiResponse.data);
+    res.status(200).json(formatted);
   } catch (error) {
     console.log("no se encontro el driver con el ID indicado");
     console.error(error.message);
