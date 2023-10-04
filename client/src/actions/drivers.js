@@ -5,9 +5,13 @@ export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const FILTER_BY_TEAM = "FILTER_BY_TEAM";
 export const SORT_BY_NAME_ASC = "SORT_BY_NAME_ASC";
 export const SORT_BY_NAME_DESC = "SORT_BY_NAME_DESC";
+export const SORT_BY_DOB = "SORT_BY_DOB";
+export const RESET_FILTER = "RESET_FILTER";
 
 export const sortNameAsc = () => ({ type: SORT_BY_NAME_ASC });
 export const sortNameDesc = () => ({ type: SORT_BY_NAME_DESC });
+export const sortDOB = () => ({ type: SORT_BY_DOB });
+export const resetFilter = () => ({ type: RESET_FILTER });
 
 export const setDrivers = (drivers) => ({
   type: SET_DRIVERS,

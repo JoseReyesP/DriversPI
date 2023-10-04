@@ -62,6 +62,7 @@ const DriversList = () => {
             apellido={d.Apellido}
             imagen={d.Imagen}
             teams={d.Teams}
+            dob={d.Fecha_nacimiento}
           />
         ))}
       </div>

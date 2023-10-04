@@ -12,8 +12,8 @@ import { setTeams } from "../../actions/teams";
 //Componentes
 import DriversList from "../../Componentes/DriverList/DriversList";
 import SearchBar from "../../Componentes/SearchBar/SearchBar";
-// import FiltrarTeamsOrigen from "../Componentes/FiltrarTeamOrigen";
-// import OrdenarNombreFecha from "../Componentes/OrdenarNombreFecha";
+import FiltrarTeamsOrigen from "../../Componentes/FiltrarTeamOrigen/FiltrarTeamOrigen";
+import OrdenarNombreFecha from "../../Componentes/OrdenarNombreFecha/OrdenarNombreFecha";
 
 const Homepage = () => {
   // dispatcher
@@ -54,9 +54,19 @@ const Homepage = () => {
       <div className="appWrapper">
         <SearchBar onClickButtonRenderize={handleBotonClickRenderize} />
       </div>
-      {/* <FiltrarTeamsOrigen />
-      <OrdenarNombreFecha /> */}
-      <DriversList />
+
+      <div className="filtros">
+        <div className="teamsorigen">
+          <FiltrarTeamsOrigen />
+        </div>
+        <div className="ordenar">
+          <OrdenarNombreFecha />
+        </div>
+      </div>
+
+      <div className="driverlist">
+        <DriversList />
+      </div>
     </div>
   );
 };

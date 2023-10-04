@@ -17,6 +17,9 @@ const DriverCard = (props) => {
           <h3>
             <b>{props.nombre} </b>
             <b>{props.apellido}</b>
+            <div>
+              <small>({props.dob})</small>
+            </div>
           </h3>
           <div>
             <b>Escuderias:</b>

@@ -1,18 +1,32 @@
 import React from "react";
 import "./OrdenarNombreFecha.css";
 import { useDispatch } from "react-redux";
-import { sortNameAsc, sortNameDesc } from "../../actions/drivers";
+import {
+  sortDOB,
+  sortNameAsc,
+  sortNameDesc,
+  resetFilter,
+} from "../../actions/drivers";
 
 const OrdenarNombreFecha = () => {
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
     switch (event.target.value) {
       case "nombre_asc":
         dispatch(sortNameAsc());
+        break;
       case "nombre_desc":
         dispatch(sortNameDesc());
+        break;
+      case "fecha":
+        console.log("deberia despachar fecha");
+        dispatch(sortDOB());
+        break;
+      case "none":
+        console.log("deberia despachar fecha");
+        dispatch(resetFilter());
+        break;
       default:
         null;
     }

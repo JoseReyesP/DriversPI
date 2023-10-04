@@ -6,6 +6,8 @@ import {
   FILTER_BY_TEAM,
   SORT_BY_NAME_ASC,
   SORT_BY_NAME_DESC,
+  SORT_BY_DOB,
+  RESET_FILTER,
 } from "../actions/drivers";
 
 const driversReducer = (
@@ -31,52 +33,39 @@ const driversReducer = (
       };
     case FILTER_BY_ORIGIN:
       state.drivers = Array.from(state.driversBuffer);
-      if (action.payload == "db") {
-        return {
-          ...state,
-          pagina: 0,
-          drivers: state.drivers.filter((driver) => {
-            if (driver.Nombre) {
-              return driver;
-            }
-          }),
-        };
-      } else {
-        return {
-          ...state,
-          pagina: 0,
-          drivers: state.drivers.filter((driver) => {
-            if (driver.name) {
-              return driver;
-            }
-          }),
-        };
+      console.log(action.payload);
+      switch (action.payload) {
+        case "none":
+          console.log("deberia volver a origen");
+          return { ...state.drivers };
+        case "db":
+          return {
+            ...state,
+            drivers: state.drivers.filter((d) => d.Origen == "DB"),
+          };
+        case "api":
+          return {
+            ...state,
+            drivers: state.drivers.filter((d) => d.Origen == "API"),
+          };
       }
 
     case FILTER_BY_TEAM:
       state.drivers = Array.from(state.driversBuffer);
-      return {
-        ...state,
-        pagina: 0,
-        drivers: state.drivers.filter((driver) => {
-          if (driver.Nombre) {
-            return driver.Teams.filter((t) => t.nombre == action.payload);
-          } else {
-            let teams = driver.teams.split(",");
-            return teams.filter((t) => t == action.payload);
-          }
-        }),
-      };
+      const regex = new RegExp(action.payload, "i");
+      const resultadoFiltrado = state.drivers.filter((item) =>
+        item.Teams.some((team) => regex.test(team))
+      );
+      return { ...state, drivers: resultadoFiltrado, pagina: 0 };
+
     case SORT_BY_NAME_ASC:
       state.drivers = Array.from(state.driversBuffer);
       return {
         ...state,
         pagina: 0,
         drivers: state.drivers.sort((a, b) => {
-          const forenameA =
-            a.name && a.name.forename ? a.name.forename.toLowerCase() : "";
-          const forenameB =
-            b.name && b.name.forename ? b.name.forename.toLowerCase() : "";
+          const forenameA = a.Nombre ? a.Nombre.toLowerCase() : "";
+          const forenameB = b.Nombre ? b.Nombre.toLowerCase() : "";
 
           if (forenameA < forenameB) {
             return -1;
@@ -94,10 +83,8 @@ const driversReducer = (
         ...state,
         pagina: 0,
         drivers: state.drivers.sort((a, b) => {
-          const forenameA =
-            a.name && a.name.forename ? a.name.forename.toLowerCase() : "";
-          const forenameB =
-            b.name && b.name.forename ? b.name.forename.toLowerCase() : "";
+          const forenameA = a.Nombre ? a.Nombre.toLowerCase() : "";
+          const forenameB = b.Nombre ? b.Nombre.toLowerCase() : "";
 
           if (forenameA > forenameB) {
             return -1;
@@ -108,6 +95,33 @@ const driversReducer = (
           return 0;
         }),
       };
+
+    case SORT_BY_DOB:
+      console.log("Sorting DOB");
+      state.drivers = Array.from(state.driversBuffer);
+      return {
+        ...state,
+        pagina: 0,
+        drivers: state.drivers.sort((a, b) => {
+          const forenameA = a.Fecha_nacimiento
+            ? a.Fecha_nacimiento.toLowerCase()
+            : "";
+          const forenameB = b.Fecha_nacimiento
+            ? b.Fecha_nacimiento.toLowerCase()
+            : "";
+
+          if (forenameA < forenameB) {
+            return -1;
+          }
+          if (forenameA > forenameB) {
+            return 1;
+          }
+          return 0;
+        }),
+      };
+
+    case RESET_FILTER:
+      return { ...state, drivers: state.driversBuffer };
 
     case SET_PAGINA:
       return { ...state, pagina: action.payload };

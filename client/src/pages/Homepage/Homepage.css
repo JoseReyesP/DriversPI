@@ -2,3 +2,21 @@
   width: 100%;
   height: auto;
 }
+
+.filtro::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.teamsorigen {
+  float: left;
+}
+
+.ordenar {
+  float: left;
+}
+
+.driverlist {
+  clear: both;
+}
