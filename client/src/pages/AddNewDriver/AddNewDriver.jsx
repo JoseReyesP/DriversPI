@@ -20,6 +20,11 @@ const AddNewDriver = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    let imagen =
+      event.target.querySelector('input[name="imagen"]').value == ""
+        ? "https://img.freepik.com/fotos-premium/piloto-f1-espera-que-comience-carrera-conceptualizacion-generativa-ai_666746-1409.jpg"
+        : event.target.querySelector('input[name="imagen"]').value;
+    ("https://img.freepik.com/fotos-premium/piloto-f1-espera-que-comience-carrera-conceptualizacion-generativa-ai_666746-1409.jpg");
 
     let nombre = event.target.querySelector('input[name="nombre"]').value;
     let apellido = event.target.querySelector('input[name="apellido"]').value;
@@ -37,12 +42,22 @@ const AddNewDriver = () => {
     ).value;
     let teams = event.target.querySelector('textarea[name="teams"]').value;
 
+    let caracteresEspeciales = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
+    if (
+      caracteresEspeciales.test(nombre) ||
+      caracteresEspeciales.test(apellido) ||
+      caracteresEspeciales.test(nacionalidad)
+    ) {
+      alert(
+        "algunos campos contienen caracteres especiales. Por favor, corrígelos."
+      );
+      return false;
+    }
     let data = {
       conductor: {
         Nombre: nombre,
         Apellido: apellido,
-        Imagen:
-          "https://img.freepik.com/fotos-premium/piloto-f1-espera-que-comience-carrera-conceptualizacion-generativa-ai_666746-1409.jpg",
+        Imagen: imagen,
         Descripcion: descripcion,
         Rating: rating,
         Fecha_nacimiento: dob,
@@ -73,6 +88,15 @@ const AddNewDriver = () => {
       />
       <h2>🏁 Nuevo conductor 🏁</h2>
       <form onSubmit={onSubmitHandler}>
+        <div>
+          <label>Imagen:</label>
+          <input
+            type="text"
+            id="imagen"
+            name="imagen"
+            placeholder="https://img.freepik.com/fotos-premium/piloto-f1-espera-que-comience-carrera-conceptualizacion-generativa-ai_666746-1409.jpg"
+          />
+        </div>
         <div>
           <label>Nombre:</label>
           <input type="text" id="nombre" name="nombre" />
