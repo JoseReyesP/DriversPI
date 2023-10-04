@@ -10,7 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Homepage from "./pages/Homepage/Homepage";
 import LandingPage from "./pages/LandingPage";
 import DriverDetails from "./pages/DriverDetails";
-import AddNewDriver from "./pages/AddNewDriver";
+import AddNewDriver from "./pages/AddNewDriver/AddNewDriver";
 
 const router = createBrowserRouter([
   {

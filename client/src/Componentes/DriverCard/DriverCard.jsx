@@ -9,9 +9,16 @@ const DriverCard = (props) => {
     navigate(`/details/${props.id}`);
   };
 
+  const backgroundColor =
+    props.origen == "DB" ? "rgb(22,53,24)" : "rgb(53,22,22)";
   return (
     <>
-      <div className="card" key={props.id} onClick={onClickHandlerCard}>
+      <div
+        className="card"
+        key={props.id}
+        onClick={onClickHandlerCard}
+        style={{ backgroundColor }}
+      >
         <img src={props.imagen} />
         <div>
           <h3>

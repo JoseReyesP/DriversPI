@@ -63,6 +63,7 @@ const DriversList = () => {
             imagen={d.Imagen}
             teams={d.Teams}
             dob={d.Fecha_nacimiento}
+            origen={d.Origen}
           />
         ))}
       </div>
